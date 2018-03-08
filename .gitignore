@@ -1,0 +1,7 @@
+__pycache__
+report.egg-info
+AUTHORS
+ChangeLog
+dist
+venv
+.eggs
