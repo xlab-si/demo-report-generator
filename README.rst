@@ -22,4 +22,17 @@ Usage
 
 .. code:: bash
 
-   $ report ...
+   $ report
+   usage: report [-h] host port user dbname
+
+   Demo report generator
+
+   positional arguments:
+     host        Database host IP address
+     port        Database host port
+     user        Database user
+     dbname      Database name
+
+   optional arguments:
+     -h, --help  show this help message and exit
+   error: the following arguments are required: host, port, user, dbname
