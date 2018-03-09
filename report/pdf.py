@@ -4,6 +4,7 @@ from reportlab.lib.units import mm
 
 from reportlab.graphics.shapes import Drawing
 from reportlab.graphics.charts.linecharts import HorizontalLineChart
+from reportlab.graphics.charts.barcharts import VerticalBarChart
 from reportlab.graphics.charts.piecharts import Pie
 
 """
@@ -101,6 +102,29 @@ class Pdf(object):
         drawing = Drawing(width * mm, height * mm)
         drawing.hAlign = "CENTER"
         drawing.add(pc)
+        self.story.append(drawing)
+
+    def add_bar_chart(self, width, height, labels, data, minv=None, maxv=None):
+        pad = 10
+
+        _min, _max = self._find_min_max(data)
+        minv = _min if minv is None else minv
+        maxv = _max if maxv is None else maxv
+
+        bc = VerticalBarChart()
+        bc.x = pad * mm
+        bc.y = pad * mm
+        bc.width = (width - 2 * pad) * mm
+        bc.height = (height - 2 * pad) * mm
+
+        bc.categoryAxis.categoryNames = labels
+        bc.data = data
+        bc.valueAxis.valueMin = minv
+        bc.valueAxis.valueMax = maxv
+
+        drawing = Drawing(width * mm, height * mm)
+        drawing.hAlign = "CENTER"
+        drawing.add(bc)
         self.story.append(drawing)
 
     def add_paragraph(self, text):

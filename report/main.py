@@ -76,6 +76,9 @@ def main():
     pdf.add_line_chart(140, 70, labels, data)
     pdf.add_paragraph("Long text should this be but there is just no time.")
 
+    pdf.add_bar_chart(170, 60, labels, data, 0, 60)
+    pdf.add_paragraph("Long text should this be but there is just no time.")
+
     pdf.add_pie_chart(80, 80, labels, data[0])
     pdf.add_pie_chart(80, 80, labels, data[1], side_labels=True)
     pdf.add_paragraph("Long text should this be but there is just no time.")
