@@ -1,4 +1,5 @@
 import argparse
+import datetime
 import getpass
 import sys
 
@@ -42,6 +43,13 @@ def main():
     # Database access
     db = Database(args.host, args.port, args.user, args.password, args.dbname)
     result = db.execute("select * from store")
+    print(result)
+    #http://initd.org/psycopg/docs/usage.html#passing-parameters-to-sql-queries
+    result = db.execute("select * from rental where rental_date < %s",
+                        (datetime.date(2005, 5, 25),))
+    print(result)
+    result = db.execute("select * from rental where rental_date < %(date)s",
+                        {"date": datetime.date(2005, 5, 25)})
     print(result)
 
     # Excel writing
